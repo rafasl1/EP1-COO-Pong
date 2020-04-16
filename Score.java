@@ -24,8 +24,12 @@ public class Score {
 	*/
 
 	public void draw(){
-
-		GameLib.drawText(playerId + ":", 70, GameLib.ALIGN_LEFT);		// o segundo parametro é a posição de y do placar	
+		int pontos = 0;
+		if(this.playerId.equalsIgnoreCase("Player 1")){
+			GameLib.drawText(playerId + ": " + pontos, 70, GameLib.ALIGN_LEFT);
+		}else{
+			GameLib.drawText(playerId + ": " + pontos, 70, GameLib.ALIGN_RIGHT);
+		}
 	}
 
 	/**
@@ -33,9 +37,9 @@ public class Score {
 	*/
 
 	public void inc(){
-		// a lógica é adicionar um contador dentro do primeiro parametro
-		GameLib.drawText(playerId + ":", 70, GameLib.ALIGN_LEFT);
+		//this.draw()
 	}
+		
 
 	/**
 		Método que devolve a contagem de pontos mantida pelo placar.

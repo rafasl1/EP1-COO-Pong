@@ -67,17 +67,19 @@ public class Ball {
 	*/
 
 	public void onPlayerCollision(String playerId){
-		this.speed *= -1;
+
 	}
 
 	/**
 		Método chamado quando detecta-se uma colisão da bola com uma parede.
 
-		@param wallId uma string cujo conteúdo identifica uma das paredes da quadra.
+		@param wallId uma string cujo conteúdo identifica uma das paredes da quadra. |
 	*/
 
 	public void onWallCollision(String wallId){
-
+		if((wallId.equals("Bottom"))|| (wallId.equals("Top"))){
+			
+		}
 	}
 
 	/**
@@ -88,19 +90,21 @@ public class Ball {
 	*/
 	
 	public boolean checkCollision(Wall wall){
-		if((wall.GetId().equalsIgnoreCase(Pong.LEFT)) & (wall.getCx() == this.cx)){
+		
+		if((wall.getId().equals("Left")) && (wall.getCx() == this.cx)){
 			return true;
 		}
-		if((wall.GetId().equalsIgnoreCase(Pong.RIGHT)) & (wall.getCx() == this.cx)){
+		if((wall.getId().equals("Right")) && (wall.getCx() == this.cx)){
 			return true;
 		}
-		if((wall.GetId().equalsIgnoreCase(Pong.BOTTON)) & (wall.getCy() == this.cy)){
+		if((wall.getId().equals("Bottom")) && (wall.getCy() == this.cy)){
 			return true;
 		}
-		if((wall.GetId().equalsIgnoreCase(Pong.TOP)) & (wall.getCy() == this.cy)){
+		if((wall.getId().equals("Top")) && (wall.getCy() == this.cy)){
 			return true;
 		}
 		return false;
+
 	}
 
 	/**
@@ -111,7 +115,9 @@ public class Ball {
 	*/	
 
 	public boolean checkCollision(Player player){
-
+		if(player.getCx() == this.cx && player.getCy() == this.cy){
+			return true;
+		}
 		return false;
 	}
 
