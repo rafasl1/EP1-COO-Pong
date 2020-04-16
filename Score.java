@@ -26,8 +26,10 @@ public class Score {
 	public void draw(){
 		int pontos = 0;
 		if(this.playerId.equalsIgnoreCase("Player 1")){
+			GameLib.setColor(Color.GREEN);
 			GameLib.drawText(playerId + ": " + pontos, 70, GameLib.ALIGN_LEFT);
 		}else{
+			GameLib.setColor(Color.BLUE);
 			GameLib.drawText(playerId + ": " + pontos, 70, GameLib.ALIGN_RIGHT);
 		}
 	}
