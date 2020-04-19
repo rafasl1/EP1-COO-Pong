@@ -71,7 +71,7 @@ public class Ball {
 	*/
 
 	public void onPlayerCollision(String playerId){
-
+		this.speedX = this.speedX*(-1);
 	}
 
 	/**
@@ -121,10 +121,16 @@ public class Ball {
 		@return um valor booleano que indica a ocorrência (true) ou não (false) de colisão.
 	*/	
 
-	public boolean checkCollision(Player player){
-		if(player.getCx() == this.cx && player.getCy() == this.cy){
+	public boolean checkCollision(Player player){/*
+		if(player.getId().equals("Player 1") && 
+		  (cx - player.getCx()/2.0 <= 1.0 + player.getWidth()/2.0 &&
+		  (cy - 1 <= player.getCy() - player.getHeight()/2.0 || cy + 1 >= player.getCy() + player.getHeight()))){
 			return true;
-		}
+		}else if(player.getId().equals("Player 2") && 
+		  (player.getCx()/2.0 - cx <= 1.0 + player.getWidth()/2.0 &&
+		  (cy - 1 <= player.getCy() - player.getHeight()/2.0 || cy + 1 >= player.getCy() + player.getHeight()))){
+			return true;
+		}*/
 		return false;
 	}
 

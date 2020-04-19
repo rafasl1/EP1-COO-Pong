@@ -60,7 +60,9 @@ public class Player {
 	*/
 
 	public void moveUp(long delta){
-		cy = cy - delta;
+		if(!(cy + this.getHeight()/2.0 <= 221)){
+			cy = cy - delta;
+		}
 	}
 
 	/**
@@ -72,7 +74,9 @@ public class Player {
 	*/
 
 	public void moveDown(long delta){
-		cy = cy + delta;
+		if(!(cy + this.getHeight()/2.0 >= 579)){
+			cy = cy + delta;
+		}
 	}
 
 	/**
