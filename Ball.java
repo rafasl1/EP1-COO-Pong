@@ -81,10 +81,11 @@ public class Ball {
 	*/
 
 	public void onWallCollision(String wallId){   
-		if((cx >= 30 && cx <= 770) && (cy <= 30 || cy >= 570)){  // topo
+		if((cx >= 30 && cx <= 770) && (cy <= 120)){  // cima 
 			this.speedY = this.speedY*(-1);
-		}
-		if((cy >= 30 && cy <= 570) && (cx >= 30 || cx <= 770)){  // topo
+		}else if((cx >= 30 && cx <= 770) && (cy >= 570)){  // baixo
+			this.speedY = this.speedY*(-1);
+		}else if((cy >= 30 && cy <= 570) && (cx >= 30 || cx <= 770)){  // direita e esquerda
 			this.speedX = this.speedX*(-1);
 		}
 	}
