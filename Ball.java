@@ -80,11 +80,11 @@ public class Ball {
 		@param wallId uma string cujo conteúdo identifica uma das paredes da quadra. |
 	*/
 
-	public void onWallCollision(String wallId){
-		if(cy >= 570 || cy <= 30){ 
+	public void onWallCollision(String wallId){   
+		if((cx >= 30 && cx <= 770) && (cy <= 30 || cy >= 570)){  // topo
 			this.speedY = this.speedY*(-1);
 		}
-		if(cx <= 770 || cx >= 30){
+		if((cy >= 30 && cy <= 570) && (cx >= 30 || cx <= 770)){  // topo
 			this.speedX = this.speedX*(-1);
 		}
 	}
