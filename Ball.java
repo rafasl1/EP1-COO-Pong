@@ -122,18 +122,23 @@ public class Ball {
 		@return um valor booleano que indica a ocorrência (true) ou não (false) de colisão.
 	*/	
 
-	public boolean checkCollision(Player player){/*
-		if(player.getId().equals("Player 1") && 
+	public boolean checkCollision(Player player){
+		/*if(player.getId().equals("Player 1") &&  
 		  (cx - player.getCx()/2.0 <= 1.0 + player.getWidth()/2.0 &&
 		  (cy - 1 <= player.getCy() - player.getHeight()/2.0 || cy + 1 >= player.getCy() + player.getHeight()))){
 			return true;
-		}else if(player.getId().equals("Player 2") && 
-		  (player.getCx()/2.0 - cx <= 1.0 + player.getWidth()/2.0 &&
-		  (cy - 1 <= player.getCy() - player.getHeight()/2.0 || cy + 1 >= player.getCy() + player.getHeight()))){
+		}else */ if(player.getId().equals("Player 2") && 
+		  (player.getCx() - player.getWidth()/2.0 <= cx + width/2.0 &&
+		  (player.getHeight()/2.0 + player.getCy() - (cy + height) >= 0 && player.getHeight()/2.0 + player.getCy() - (cy + height) <= player.getHeight()/2.0 + player.getCy() ))){
 			return true;
-		}*/
+		}
 		return false;
 	}
+
+	/** player 2
+	if(x da bolinha é maior ou igual a x do player  E  y da bolinha está entre as pontas do player  )
+	
+	*/
 
 	/**
 		Método que devolve a coordenada x do centro do retângulo que representa a bola.
