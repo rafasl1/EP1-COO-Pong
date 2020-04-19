@@ -26,6 +26,8 @@ public class Ball {
 	double height;
 	Color color; 
 	double speed;
+	double speedX;
+	double speedY;
 
 	public Ball(double cx, double cy, double width, double height, Color color, double speed){
 		this.cx = cx;
@@ -34,6 +36,8 @@ public class Ball {
 		this.height = height;
 		this.color = color;
 		this.speed = speed;
+		this.speedX = (this.speed);
+		this.speedY = (this.speed);
 	}
 
 	/**
@@ -56,8 +60,8 @@ public class Ball {
 	*/
 
 	public void update(long delta){
-		cx = cx + speed*delta;
-		cy = cy + speed*delta;
+		cx = cx + speedX*delta;
+		cy = cy + speedY*delta;
 	}
 
 	/**
@@ -77,8 +81,11 @@ public class Ball {
 	*/
 
 	public void onWallCollision(String wallId){
-		if((wallId.equals("Bottom"))|| (wallId.equals("Top"))){
-			
+		if(cy >= 570 || cy <= 30){ 
+			this.speedY = this.speedY*(-1);
+		}
+		if(cx <= 770 || cx >= 30){
+			this.speedX = this.speedX*(-1);
 		}
 	}
 
@@ -91,16 +98,16 @@ public class Ball {
 	
 	public boolean checkCollision(Wall wall){
 		
-		if((wall.getId().equals("Left")) && (wall.getCx() == this.cx)){
+		if((wall.getId().equals("Left")) && (wall.getCx() >= this.cx)){
 			return true;
 		}
-		if((wall.getId().equals("Right")) && (wall.getCx() == this.cx)){
+		if((wall.getId().equals("Right")) && (wall.getCx() <= this.cx)){
 			return true;
 		}
-		if((wall.getId().equals("Bottom")) && (wall.getCy() == this.cy)){
+		if((wall.getId().equals("Bottom")) && (wall.getCy() <= this.cy)){
 			return true;
 		}
-		if((wall.getId().equals("Top")) && (wall.getCy() == this.cy)){
+		if((wall.getId().equals("Top")) && (wall.getCy() >= this.cy)){
 			return true;
 		}
 		return false;

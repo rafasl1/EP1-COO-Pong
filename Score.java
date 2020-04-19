@@ -16,6 +16,7 @@ public class Score {
 	String playerId;
 
 	public Score(String playerId){
+		this.score = 0;
 		this.playerId = playerId;
 	}
 
@@ -24,13 +25,12 @@ public class Score {
 	*/
 
 	public void draw(){
-		int pontos = 0;
 		if(this.playerId.equalsIgnoreCase("Player 1")){
 			GameLib.setColor(Color.GREEN);
-			GameLib.drawText(playerId + ": " + pontos, 70, GameLib.ALIGN_LEFT);
+			GameLib.drawText(playerId + ": " + this.score, 70, GameLib.ALIGN_LEFT);
 		}else{
 			GameLib.setColor(Color.BLUE);
-			GameLib.drawText(playerId + ": " + pontos, 70, GameLib.ALIGN_RIGHT);
+			GameLib.drawText(playerId + ": " + this.score, 70, GameLib.ALIGN_RIGHT);
 		}
 	}
 
