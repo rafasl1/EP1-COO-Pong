@@ -14,6 +14,7 @@ public class Score {
 		@param playerId uma string que identifica o player ao qual este placar está associado.
 	*/
 	String playerId;
+	int score;
 
 	public Score(String playerId){
 		this.score = 0;
@@ -39,7 +40,7 @@ public class Score {
 	*/
 
 	public void inc(){
-		//this.draw()
+		this.score = this.score + 1;
 	}
 		
 
@@ -51,6 +52,6 @@ public class Score {
 
 	public int getScore(){
 
-		return 0;
+		return this.score;
 	}
 }
