@@ -123,11 +123,11 @@ public class Ball {
 	*/	
 
 	public boolean checkCollision(Player player){
-		/*if(player.getId().equals("Player 1") &&  
-		  (cx - player.getCx()/2.0 <= 1.0 + player.getWidth()/2.0 &&
+		if(player.getId().equals("Player 1") &&  
+		  (player.getCx() + player.getWidth()/2.0 >= cx - width/2.0 &&
 		  (cy - 1 <= player.getCy() - player.getHeight()/2.0 || cy + 1 >= player.getCy() + player.getHeight()))){
 			return true;
-		}else */ if(player.getId().equals("Player 2") && 
+		}else if(player.getId().equals("Player 2") && 
 		  (player.getCx() - player.getWidth()/2.0 <= cx + width/2.0 &&
 		  (player.getHeight()/2.0 + player.getCy() - (cy + height) >= 0 && player.getHeight()/2.0 + player.getCy() - (cy + height) <= player.getHeight()/2.0 + player.getCy() ))){
 			return true;
