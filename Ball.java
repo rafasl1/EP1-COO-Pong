@@ -87,6 +87,9 @@ public class Ball {
 			this.speedY = this.speedY*(-1);
 		}else if((cy >= 30 && cy <= 570) && (cx >= 30 || cx <= 770)){  // direita e esquerda
 			this.speedX = this.speedX*(-1);
+		}else if( ( cx <= 30 && cy <= 120 ) || (cx <= 30 && cy >= 570) || (cx >= 770 && cy >= 570) || (cx >= 770 && cy >= 570) ){  // áreas de bug
+			this.speedX = this.speedX*(-1);
+			this.speedY = this.speedY*(-1);
 		}
 	}
 
@@ -111,6 +114,9 @@ public class Ball {
 		if((wall.getId().equals("Top")) && (wall.getCy() >= this.cy)){
 			return true;
 		}
+		if( ( cx <= 30 && cy <= 120 ) || (cx <= 30 && cy >= 570) || (cx >= 770 && cy >= 570) || (cx >= 770 && cy >= 570) ){
+			return true;
+		}
 		return false;
 
 	}
@@ -124,15 +130,34 @@ public class Ball {
 
 	public boolean checkCollision(Player player){
 		if(player.getId().equals("Player 1")) {
-			if(player.getCx() + player.getWidth()/2.0 >= cx - width/2.0 &&
+			if(player.getCx() + player.getWidth()/2.0 >= cx - width/2.0 &&	// frente
 		      (player.getHeight()/2.0 + player.getCy() - (cy + height) >= 0 && 
 		       player.getHeight()/2.0 + player.getCy() - (cy + height) <= player.getHeight()/2.0 + player.getCy())){
 				return true;
+
+			}else if( cy + height/2.0 == player.getCy() - player.getHeight() && 		// em cima
+					(cx + width/2.0 >= player.getCx() - player.getWidth()/2.0 && cx + width/2.0 <= player.getCx() + player.getWidth()/2.0 )){
+				return true;
+			}else if( cy - height/2.0 == player.getCy() + player.getHeight() && 		// em baixo
+					(cx + width/2.0 >= player.getCx() - player.getWidth()/2.0 && cx + width/2.0 <= player.getCx() + player.getWidth()/2.0 )){
+				return true;
 			}
+
+
+
 		}else if(player.getId().equals("Player 2")) {
-			if(player.getCx() - player.getWidth()/2.0 <= cx + width/2.0 &&
+			if(player.getCx() - player.getWidth()/2.0 <= cx + width/2.0 && // em frente
 		       (player.getHeight()/2.0 + player.getCy() - (cy + height) >= 0 && 
 		        player.getHeight()/2.0 + player.getCy() - (cy + height) <= player.getHeight()/2.0 + player.getCy())){
+				return true;
+			}else if( cy + height/2.0 == player.getCy() - player.getHeight() && 		// em cima
+					(cx + width/2.0 >= player.getCx() - player.getWidth()/2.0 && cx + width/2.0 <= player.getCx() + player.getWidth()/2.0 )){
+				return true;
+			}else if( cy - height/2.0 == player.getCy() + player.getHeight() && 		// em baixo
+					(cx + width/2.0 >= player.getCx() - player.getWidth()/2.0 && cx + width/2.0 <= player.getCx() + player.getWidth()/2.0 )){
+				return true;
+			}else if( cx - width/2.0 == player.getCx() + player.getWidth() &&		// atrás
+			( cy - height/2.0 >= player.getCy() - player.getHeight()/2.0 && cy - height/2.0 <= player.getCy() + player.getHeight()/2.0 ) ){
 				return true;
 			}
 		}
