@@ -28,6 +28,7 @@ public class Ball {
 	double speed;
 	double speedX;
 	double speedY;
+	Player playerColisao;
 
 	public Ball(double cx, double cy, double width, double height, Color color, double speed){
 		this.cx = cx;
@@ -71,7 +72,47 @@ public class Ball {
 	*/
 
 	public void onPlayerCollision(String playerId){
-		this.speedX = this.speedX*(-1);
+		if(playerId.equals("Player 1")) {
+			if(playerColisao.getCx() + playerColisao.getWidth()/2.0 + 5 >= cx - width/2.0 &&	// frente
+		      (playerColisao.getHeight()/2.0 + playerColisao.getCy() >= (cy + height/2.0) && 
+		       playerColisao.getCy() - playerColisao.getHeight()/2.0  <= (cy - height/2.0))){
+				this.speedX = this.speedX*(-1);
+
+			}else if( cy + height/2.0 == playerColisao.getCy() - playerColisao.getHeight() && 		// em cima
+					(cx + width/2.0 >= playerColisao.getCx() - playerColisao.getWidth()/2.0 && cx + width/2.0 <= playerColisao.getCx() + playerColisao.getWidth()/2.0 )){
+				this.speedY = this.speedY*(-1);
+
+			}else if( cy - height/2.0 == playerColisao.getCy() + playerColisao.getHeight() && 		// em baixo
+					(cx + width/2.0 >= playerColisao.getCx() - playerColisao.getWidth()/2.0 && cx + width/2.0 <= playerColisao.getCx() + playerColisao.getWidth()/2.0 )){
+				this.speedY = this.speedY*(-1);
+
+			}else if( cx + width/2.0 == playerColisao.getCx() - playerColisao.getWidth() &&		// atrás
+			( cy - height/2.0 >= playerColisao.getCy() - playerColisao.getHeight()/2.0 && cy - height/2.0 <= playerColisao.getCy() + playerColisao.getHeight()/2.0 ) ){
+				this.speedX = this.speedX*(-1);
+
+			}
+
+
+		}else if(playerId.equals("Player 2")) {
+			if(playerColisao.getCx() - playerColisao.getWidth()/2.0 <= cx + width/2.0 && // em frente
+		       (playerColisao.getHeight()/2.0 + playerColisao.getCy() - (cy + height/2.0) >= 0 && 
+		        playerColisao.getCy() - playerColisao.getHeight()/2.0  <= (cy - height/2.0))){
+				this.speedX = this.speedX*(-1);
+
+			}else if( cy + height/2.0 == playerColisao.getCy() - playerColisao.getHeight() && 		// em cima
+					(cx + width/2.0 >= playerColisao.getCx() - playerColisao.getWidth()/2.0 && cx + width/2.0 <= playerColisao.getCx() + playerColisao.getWidth()/2.0 )){
+				this.speedY = this.speedY*(-1);
+
+			}else if( cy - height/2.0 == playerColisao.getCy() + playerColisao.getHeight() && 		// em baixo
+					(cx + width/2.0 >= playerColisao.getCx() - playerColisao.getWidth()/2.0 && cx + width/2.0 <= playerColisao.getCx() + playerColisao.getWidth()/2.0 )){
+				this.speedY = this.speedY*(-1);
+
+			}else if( cx - width/2.0 == playerColisao.getCx() + playerColisao.getWidth() &&		// atrás
+			( cy - height/2.0 >= playerColisao.getCy() - playerColisao.getHeight()/2.0 && cy - height/2.0 <= playerColisao.getCy() + playerColisao.getHeight()/2.0 ) ){
+				this.speedX = this.speedX*(-1);
+
+			}
+		}
 	}
 
 	/**
@@ -130,35 +171,46 @@ public class Ball {
 
 	public boolean checkCollision(Player player){
 		if(player.getId().equals("Player 1")) {
-			if(player.getCx() + player.getWidth()/2.0 >= cx - width/2.0 &&	// frente
-		      (player.getHeight()/2.0 + player.getCy() - (cy + height) >= 0 && 
-		       player.getHeight()/2.0 + player.getCy() - (cy + height) <= player.getHeight()/2.0 + player.getCy())){
+			playerColisao = player;
+			if(player.getCx() + player.getWidth()/2.0 + 5 >= cx - width/2.0  &&	// frente
+		      (player.getHeight()/2.0 + player.getCy() >= (cy + height/2.0) && 
+		       playerColisao.getCy() - playerColisao.getHeight()/2.0  <= (cy - height/2.0))){
 				return true;
 
 			}else if( cy + height/2.0 == player.getCy() - player.getHeight() && 		// em cima
 					(cx + width/2.0 >= player.getCx() - player.getWidth()/2.0 && cx + width/2.0 <= player.getCx() + player.getWidth()/2.0 )){
 				return true;
+
 			}else if( cy - height/2.0 == player.getCy() + player.getHeight() && 		// em baixo
 					(cx + width/2.0 >= player.getCx() - player.getWidth()/2.0 && cx + width/2.0 <= player.getCx() + player.getWidth()/2.0 )){
 				return true;
+
+			}else if( cx + width/2.0 == player.getCx() - player.getWidth() &&		// atrás
+			( cy - height/2.0 >= player.getCy() - player.getHeight()/2.0 && cy - height/2.0 <= player.getCy() + player.getHeight()/2.0 ) ){
+				return true;
+
 			}
 
 
-
 		}else if(player.getId().equals("Player 2")) {
+			playerColisao = player;
 			if(player.getCx() - player.getWidth()/2.0 <= cx + width/2.0 && // em frente
-		       (player.getHeight()/2.0 + player.getCy() - (cy + height) >= 0 && 
-		        player.getHeight()/2.0 + player.getCy() - (cy + height) <= player.getHeight()/2.0 + player.getCy())){
+		       (player.getHeight()/2.0 + player.getCy() - (cy + height/2.0) >= 0 && 
+		        playerColisao.getCy() - playerColisao.getHeight()/2.0  <= (cy - height/2.0))){
 				return true;
+
 			}else if( cy + height/2.0 == player.getCy() - player.getHeight() && 		// em cima
 					(cx + width/2.0 >= player.getCx() - player.getWidth()/2.0 && cx + width/2.0 <= player.getCx() + player.getWidth()/2.0 )){
 				return true;
+				
 			}else if( cy - height/2.0 == player.getCy() + player.getHeight() && 		// em baixo
 					(cx + width/2.0 >= player.getCx() - player.getWidth()/2.0 && cx + width/2.0 <= player.getCx() + player.getWidth()/2.0 )){
 				return true;
+
 			}else if( cx - width/2.0 == player.getCx() + player.getWidth() &&		// atrás
 			( cy - height/2.0 >= player.getCy() - player.getHeight()/2.0 && cy - height/2.0 <= player.getCy() + player.getHeight()/2.0 ) ){
 				return true;
+
 			}
 		}
 		return false;
